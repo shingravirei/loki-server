@@ -1,9 +1,15 @@
-let ws = new WebSocket('ws://localhost:8080');
+document.cookie = 'token=someToken';
 
-ws.addEventListener('open', (e) => {
+const ws = new WebSocket('ws://localhost:8080');
+
+ws.addEventListener('open', e => {
     ws.send('Hello Server!');
 });
 
-ws.addEventListener('message', (e) => {
-    console.log('Message from server:', event.data);
+ws.addEventListener('message', e => {
+    console.log(e.data);
+});
+
+ws.addEventListener('error', e => {
+    console.log(e);
 });
